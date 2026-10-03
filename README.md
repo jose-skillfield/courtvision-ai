@@ -1,6 +1,6 @@
 # CourtVision AI
 
-**Personalised AI shooting and form coach.** Built by **Skillfield Engineering**.
+**Personalised AI shooting and form coach.** Built by **Skillfield**.
 
 > SHOOT | ANALYSE | OPTIMISE
 
@@ -85,4 +85,4 @@ This app uses the **Skillfield** design system: deep blue `#124E91`, electric bl
 * Ideas for later: native wrappers (Capacitor) for background audio, Bluetooth earbud controls, coach sharing and team dashboards.
 
 ---
-© Skillfield. A Skillfield Engineering prototype.
+© Skillfield. A Skillfield prototype.

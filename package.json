@@ -2,7 +2,7 @@
   "name": "courtvision-ai",
   "version": "0.1.0",
   "private": true,
-  "description": "Personalised AI shooting and form coach. A Skillfield Engineering prototype.",
+  "description": "Personalised AI shooting and form coach. A Skillfield prototype.",
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 8080",

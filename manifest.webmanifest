@@ -1,7 +1,7 @@
 {
   "name": "CourtVision AI",
   "short_name": "CourtVision",
-  "description": "Personalised AI shooting and form coach by Skillfield Engineering.",
+  "description": "Personalised AI shooting and form coach by Skillfield.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
