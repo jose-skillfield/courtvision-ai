@@ -1,0 +1,14 @@
+{
+  "name": "CourtVision AI",
+  "short_name": "CourtVision",
+  "description": "Personalised AI shooting and form coach by Skillfield Engineering.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#131f31",
+  "theme_color": "#131f31",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

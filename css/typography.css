@@ -1,0 +1,41 @@
+/* ============================================================
+   Skillfield — Typography tokens
+   Display/headings: Poppins (geometric, rounded brand voice)
+   Body: Open Sans (legible, professional)
+   ============================================================ */
+:root {
+  /* Families */
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body:    'Open Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* Weights */
+  --fw-regular:  400; /* @kind font */
+  --fw-medium:   500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold:     700; /* @kind font */
+  --fw-extra:    800; /* @kind font */
+
+  /* Type scale (rem, 16px base) */
+  --fs-display:  3.5rem;   /* 56 — hero / title slide        */
+  --fs-h1:       2.5rem;   /* 40 */
+  --fs-h2:       2rem;     /* 32 — "Sub Header"              */
+  --fs-h3:       1.5rem;   /* 24 — "Small Content Header"    */
+  --fs-h4:       1.25rem;  /* 20 */
+  --fs-lead:     1.25rem;  /* 20 — intro paragraphs          */
+  --fs-body:     1rem;     /* 16 */
+  --fs-sm:       0.875rem; /* 14 */
+  --fs-xs:       0.75rem;  /* 12 — labels, eyebrows          */
+
+  /* Line heights */
+  --lh-tight:   1.1; /* @kind font */
+  --lh-snug:    1.25; /* @kind font */
+  --lh-normal:  1.5; /* @kind font */
+  --lh-relaxed: 1.7; /* @kind font */
+
+  /* Letter spacing */
+  --ls-tight:   -0.02em; /* @kind font */
+  --ls-normal:  0; /* @kind font */
+  --ls-wide:    0.04em; /* @kind font */
+  --ls-eyebrow: 0.14em;   /* DISCOVER | PROTECT | OPTIMISE @kind font */
+}

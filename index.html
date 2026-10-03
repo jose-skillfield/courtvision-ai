@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>CourtVision AI</title>
+  <meta name="description" content="Personalised AI shooting and form coach. Real-time voice feedback, shot charting and frame-by-frame form breakdown from your phone camera." />
+  <meta name="theme-color" content="#131f31" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/icon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-mark" src="assets/icon.svg" alt="" />
+      <div class="brand-text">
+        <span class="brand-name">CourtVision <strong>AI</strong></span>
+        <span class="brand-sub">by Skillfield Engineering</span>
+      </div>
+    </div>
+    <button class="icon-btn" id="settingsBtn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===================== HOME ===================== -->
+    <section class="view" id="view-home" data-view="home">
+      <div class="hero">
+        <p class="eyebrow">SHOOT <span>|</span> ANALYSE <span>|</span> OPTIMISE</p>
+        <h1>Your personal shooting coach, in your pocket.</h1>
+        <p class="lead">Point your phone at the court. CourtVision AI tracks your shooting motion, arc, release speed and ball flight in real time, then talks you through every rep.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-start="camera">Start a session</button>
+          <button class="btn btn-ghost-dark" data-start="demo">Try demo mode</button>
+        </div>
+        <p class="hero-note">Everything runs on your device. No video leaves your phone.</p>
+      </div>
+
+      <div class="container">
+        <div class="feature-grid">
+          <article class="gbox">
+            <h3>Real-time audio feedback</h3>
+            <p>Instant spoken cues through your earbuds, like "Arc 42°. Add power" or "Higher release", so you can train alone.</p>
+          </article>
+          <article class="gbox gbox-aqua">
+            <h3>Shot charting &amp; quality score</h3>
+            <p>Makes and misses are tagged automatically, and each shot gets a 0–100 quality score with a difficulty rating based on depth and balance.</p>
+          </article>
+          <article class="gbox gbox-deep">
+            <h3>Form breakdown</h3>
+            <p>Step through each shot frame by frame to check elbow tuck, dip consistency and follow-through on your release.</p>
+          </article>
+        </div>
+
+        <div class="card setup">
+          <h2>Set up in 30 seconds</h2>
+          <ol class="steps">
+            <li><strong>Side-on view.</strong> Prop your phone 4–6 m from your shooting spot, side-on, with your whole body and the rim in frame.</li>
+            <li><strong>Tap the rim.</strong> Tap the hoop in the preview once so we can tell makes from misses.</li>
+            <li><strong>Earbuds in.</strong> Connect earbuds for spoken cues, then shoot.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRACTICE ===================== -->
+    <section class="view" id="view-practice" data-view="practice" hidden>
+      <div class="stage" id="stage">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div class="hud">
+          <div class="hud-top">
+            <span class="pill pill-live" id="modePill">LIVE</span>
+            <span class="pill" id="statusPill">Starting…</span>
+          </div>
+          <div class="hud-cue" id="cue" aria-live="polite"></div>
+        </div>
+        <div class="hoop-hint" id="hoopHint">Tap the rim to calibrate makes and misses</div>
+      </div>
+      <div class="hud-stats">
+        <div><b id="hudMakes">0/0</b><span>Makes</span></div>
+        <div><b id="hudArc">–</b><span>Arc</span></div>
+        <div><b id="hudSpeed">–</b><span>Release</span></div>
+        <div><b id="hudScore">–</b><span>Quality</span></div>
+      </div>
+
+      <div class="container practice-controls">
+        <div class="row">
+          <label class="field">
+            <span>Shooting spot</span>
+            <select id="spotSelect"></select>
+          </label>
+          <label class="field" id="distField">
+            <span>Distance <output id="distOut">4.5 m</output></span>
+            <input type="range" id="distRange" min="1" max="9" step="0.25" value="4.5" />
+          </label>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" id="endBtn">End session</button>
+          <button class="btn btn-secondary" id="voiceBtn" aria-pressed="true">Voice on</button>
+        </div>
+
+        <div class="card last-shot" id="lastShot" hidden>
+          <div class="last-shot-head">
+            <h3>Last shot</h3>
+            <div class="seg" role="group" aria-label="Correct the result">
+              <button data-made="true">Make</button>
+              <button data-made="false">Miss</button>
+            </div>
+          </div>
+          <div class="metric-row" id="lastShotMetrics"></div>
+          <button class="link-btn" id="openBreakdown">View form breakdown →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CHART ===================== -->
+    <section class="view" id="view-chart" data-view="chart" hidden>
+      <div class="container">
+        <p class="eyebrow eyebrow-light">SHOT CHART</p>
+        <h2 class="page-title">Where you're scoring from</h2>
+        <div class="kpis" id="kpis"></div>
+        <div class="card court-card">
+          <svg id="court" viewBox="-770 -175 1540 1080" role="img" aria-label="Half-court shot chart"></svg>
+          <div class="legend">
+            <span><i class="dot dot-make"></i>Make</span>
+            <span><i class="dot dot-miss"></i>Miss</span>
+            <span class="muted">Dot size shows quality score</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>By zone</h3>
+          <table class="zone-table" id="zoneTable"></table>
+        </div>
+        <div class="card">
+          <h3>Shot log</h3>
+          <div class="shot-log" id="shotLog"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FORM ===================== -->
+    <section class="view" id="view-form" data-view="form" hidden>
+      <div class="container">
+        <p class="eyebrow eyebrow-light">FORM BREAKDOWN</p>
+        <h2 class="page-title" id="formTitle">Frame by frame</h2>
+        <div class="empty" id="formEmpty">
+          <p>Take a few shots in a session (or demo mode) and your frame-by-frame breakdown will show up here.</p>
+        </div>
+        <div id="formBody" hidden>
+          <div class="shot-picker" id="shotPicker"></div>
+          <div class="card frame-card">
+            <canvas id="frameCanvas" width="1280" height="720"></canvas>
+            <div class="scrub">
+              <button class="icon-btn" id="playBtn" aria-label="Play">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+              <input type="range" id="scrub" min="0" max="0" value="0" aria-label="Frame" />
+              <span class="frame-no" id="frameNo">0/0</span>
+            </div>
+            <div class="chips" id="keyChips">
+              <button class="chip" data-key="dip">Dip</button>
+              <button class="chip" data-key="set">Set point</button>
+              <button class="chip" data-key="release">Release</button>
+              <button class="chip" data-key="follow">Follow-through</button>
+            </div>
+          </div>
+          <div class="checks" id="formChecks"></div>
+          <div class="card" id="consistency"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HISTORY ===================== -->
+    <section class="view" id="view-history" data-view="history" hidden>
+      <div class="container">
+        <p class="eyebrow eyebrow-light">SESSIONS</p>
+        <h2 class="page-title">Your progress</h2>
+        <div class="card"><canvas id="trendCanvas" height="220"></canvas></div>
+        <div id="sessionList"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Main">
+    <button data-nav="home" class="active"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+    <button data-nav="practice"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="4"/><path d="M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg>Practice</button>
+    <button data-nav="chart"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>Chart</button>
+    <button data-nav="form"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M7 10l5-2 5 2"/></svg>Form</button>
+    <button data-nav="history"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg>Progress</button>
+  </nav>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <h2>Settings</h2>
+      <label class="field"><span>Shooting hand</span>
+        <select id="setHand"><option value="right">Right</option><option value="left">Left</option></select>
+      </label>
+      <label class="field"><span>Your height (cm)</span>
+        <input type="number" id="setHeight" min="120" max="230" value="180" />
+      </label>
+      <label class="field"><span>Voice cues</span>
+        <select id="setVoice"><option value="every">After every shot</option><option value="misses">Only on misses</option><option value="off">Off</option></select>
+      </label>
+      <label class="field"><span>Show skeleton overlay</span>
+        <select id="setOverlay"><option value="on">On</option><option value="off">Off</option></select>
+      </label>
+      <div class="row">
+        <button class="btn btn-secondary" value="cancel" id="clearData" type="button">Clear history</button>
+        <button class="btn btn-primary" value="ok">Done</button>
+      </div>
+      <p class="fineprint">CourtVision AI is a Skillfield Engineering prototype. Pose tracking uses MediaPipe on your device. Ball tracking is colour-based and works best with an orange ball, good light and a plain background.</p>
+    </form>
+  </dialog>
+
+  <footer class="footer">
+    <img src="assets/logos/skillfield-logo-white.png" alt="Skillfield" class="footer-logo" />
+    <span>Built by Skillfield Engineering</span>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

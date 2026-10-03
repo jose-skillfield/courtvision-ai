@@ -1,0 +1,78 @@
+/* ============================================================
+   Skillfield — Colour tokens
+   Extracted from the FY24 brand palette (11 brand colours) +
+   the navy used on dark slide/title backgrounds.
+   ============================================================ */
+:root {
+  /* --- Brand palette (raw) --- */
+  --sf-blue-deep: #124e91;   /* primary — the "skillfield" wordmark blue */
+  --sf-blue:      #437fec;   /* electric blue — primary accent / links     */
+  --sf-cyan:      #4cd9ed;   /* aqua — gradients, data accents             */
+  --sf-purple:    #9646ff;
+  --sf-magenta:   #cc258b;
+  --sf-pink:      #ff456b;
+  --sf-orange:    #da7f27;
+  --sf-amber:     #fdb715;
+  --sf-green:     #7f9e2e;   /* olive */
+  --sf-lime:      #aed13b;
+  --sf-lavender:  #eff1ff;   /* palest tint — section fills, hover wash    */
+
+  /* --- Navy (dark backgrounds, sampled from title/section slides) --- */
+  --sf-navy-900: #0c1626;
+  --sf-navy-800: #131f31;
+  --sf-navy-700: #1c2c44;
+  --sf-navy-600: #27395a;
+
+  /* --- Neutral ramp --- */
+  --sf-white:  #ffffff;
+  --gray-50:  #f6f8fb;
+  --gray-100: #eef1f6;
+  --gray-200: #e1e6ee;
+  --gray-300: #cbd3df;
+  --gray-400: #9aa6b8;
+  --gray-500: #6b7889;
+  --gray-600: #4c5867;
+  --gray-700: #364150;
+  --gray-800: #232c39;
+  --gray-900: #131a23;
+
+  /* --- Semantic: text --- */
+  --text-heading:  var(--sf-navy-800);
+  --text-body:     var(--gray-700);
+  --text-muted:    var(--gray-500);
+  --text-link:     var(--sf-blue);
+  --text-inverse:  var(--sf-white);
+  --text-on-dark:  rgba(255,255,255,0.86);
+  --text-on-dark-muted: rgba(255,255,255,0.62);
+
+  /* --- Semantic: surfaces --- */
+  --surface-page:    var(--sf-white);
+  --surface-card:    var(--sf-white);
+  --surface-muted:   var(--gray-50);
+  --surface-tint:    var(--sf-lavender);
+  --surface-dark:    var(--sf-navy-800);
+  --surface-dark-2:  var(--sf-navy-900);
+
+  /* --- Semantic: borders --- */
+  --border-subtle:  var(--gray-200);
+  --border-default: var(--gray-300);
+  --border-on-dark: rgba(255,255,255,0.14);
+  --border-focus:   var(--sf-blue);
+
+  /* --- Semantic: brand / interactive --- */
+  --color-primary:        var(--sf-blue-deep);
+  --color-primary-hover:  #0e3f76;   /* darkened deep blue */
+  --color-accent:         var(--sf-blue);
+  --color-accent-hover:   #2f6ad6;
+
+  /* --- Status (practice-coded) --- */
+  --practice-security: var(--sf-blue-deep);
+  --practice-data:     var(--sf-cyan);
+  --practice-ai:       var(--sf-purple);
+
+  /* --- Feedback --- */
+  --status-success: var(--sf-green);
+  --status-warning: var(--sf-amber);
+  --status-danger:  var(--sf-pink);
+  --status-info:    var(--sf-blue);
+}

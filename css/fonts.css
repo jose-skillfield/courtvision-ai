@@ -1,0 +1,11 @@
+/* ============================================================
+   Skillfield — Webfonts
+   NOTE: Skillfield's site is WordPress + Google Fonts. The exact
+   licensed brand faces were not supplied, so these are the closest
+   Google Fonts matches:
+     • Poppins  — geometric, friendly sans for the rounded brand
+                  voice (headings / display / the wordmark feel).
+     • Open Sans — neutral, highly legible body face for long copy.
+   Swap these for the official brand fonts if/when provided.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
